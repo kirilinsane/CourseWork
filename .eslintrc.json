@@ -13,11 +13,6 @@
       "error",
       2
     ],
-    /*"linebreak-style": [s
-      "error",
-      "unix"
-    ],
-    */
     "quotes": [
       "error",
       "single"

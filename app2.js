@@ -24,11 +24,25 @@ const getData = async cityName => { // functioin for getting data
 
   const object = await getData(cityName);
 
-  const visibility = 'Visibility is:' + object.visibility  +  'metres';
-  console.log(visibility);
+  const vs = () => {
+    const visibility =  object.visibility;
+    if (visibility === undefined) {
+      console.log(`Unknown visibility in ${cityName} `);
+    }    else {
+      console.log('Visibility is:' + visibility + 'metres');
+    }
+  };
+  vs();
 
-  const sky = 'Sky:' + object.weather.main;
-  console.log(sky);
+  const sk = () => {
+    const sky =  object.weather.main;
+    if (sky === undefined) {
+      console.log('Can`t get information about the sky');
+    }	else {
+      console.log('sky:' + sky);
+    }
+  };
+  sk();
 
   const temp = 'Current temperature is:' + Math.round(object.main.temp - 273) + '°';
   console.log(temp);
