@@ -1,9 +1,11 @@
 'use strict';
 
 console.clear();
-console.log('Enter your city');
 
+const concolor = require('concolor');
 const axios = require('axios');
+
+console.log(concolor`${'Enter your city'}(b,red)`);
 
 const getData = async cityName => { // functioin for getting data
   const API_KEY = '3bd68c313a18c02837369e027d9ac4bd';
@@ -24,40 +26,40 @@ const getData = async cityName => { // functioin for getting data
 
   const object = await getData(cityName);
 
-  const vs = () => {
+  const vis = () => {
     const visibility =  object.visibility;
     if (visibility === undefined) {
-      console.log(`Unknown visibility in ${cityName} `);
+      console.log(concolor`${'Unknown visibility'}(b,red/black)`);
     }    else {
-      console.log('Visibility is:' + visibility + 'metres');
+      console.log(concolor`${'Visibility is'}(b,green) ${visibility + 'm'}(b,yellow)`);
     }
   };
-  vs();
+  vis();
 
-  const sk = () => {
+  const sky = () => {
     const sky =  object.weather.main;
     if (sky === undefined) {
-      console.log('Can`t get information about the sky');
+      console.log(concolor`${'Can`t get information about the sky'}(b,red/black)`);
     }	else {
       console.log('sky:' + sky);
     }
   };
-  sk();
+  sky();
 
   const temp = Math.round(object.main.temp - 273);
-  console.log('Current temperature is:' + temp + '°');
+  console.log(concolor`${'Current temperature is:'}(b,blue) ${temp + '°C'}(b,yellow)`);
 
   const feelslike = Math.round(object.main.feels_like - 273);
-  console.log('Feels like:' + feelslike + '°');
+  console.log(concolor`${'Feels like:'}(b,blue) ${feelslike + '°C'}(b,yellow)`);
 
   const minTemp = Math.round(object.main.temp_min - 273);
-  console.log('Min temperature for today is:' + minTemp + '°');
+  console.log(concolor`${'Min temperature for today is:'}(b,blue) ${minTemp + '°C'}(b,yellow)`);
 
   const maxTemp = Math.round(object.main.temp_max - 273);
-  console.log('Max temperature for today is:' + maxTemp + '°');
+  console.log(concolor`${'Max temperature for today is:'}(b,blue) ${maxTemp + '°C'}(b,yellow)`);
 
   const wind = object.wind.speed;
-  console.log('Wind speed is:' + wind  + 'm/s');
+  console.log(concolor`${'Wind speed is:'}(b,green) ${wind + 'm/s'}(b,yellow)`);
 
   process.exit(-1);
 })();
