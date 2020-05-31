@@ -24,26 +24,40 @@ const getData = async cityName => { // functioin for getting data
 
   const object = await getData(cityName);
 
-  const visibility = 'Visibility is:' + object.visibility  +  'metres';
-  console.log(visibility);
+  const vs = () => {
+    const visibility =  object.visibility;
+    if (visibility === undefined) {
+      console.log(`Unknown visibility in ${cityName} `);
+    }    else {
+      console.log('Visibility is:' + visibility + 'metres');
+    }
+  };
+  vs();
 
-  const sky = 'Sky:' + object.weather.main;
-  console.log(sky);
+  const sk = () => {
+    const sky =  object.weather.main;
+    if (sky === undefined) {
+      console.log('Can`t get information about the sky');
+    }	else {
+      console.log('sky:' + sky);
+    }
+  };
+  sk();
 
-  const temp = 'Current temperature is:' + Math.round(object.main.temp - 273) + '°';
-  console.log(temp);
+  const temp = Math.round(object.main.temp - 273);
+  console.log('Current temperature is:' + temp + '°');
 
-  const feelslike = 'Feels like:' + Math.round(object.main.feels_like - 273) + '°';
-  console.log(feelslike);
+  const feelslike = Math.round(object.main.feels_like - 273);
+  console.log('Feels like:' + feelslike + '°');
 
-  const minTemp = 'Min temperature for today is:' + Math.round(object.main.temp_min - 273) + '°';
-  console.log(minTemp);
+  const minTemp = Math.round(object.main.temp_min - 273);
+  console.log('Min temperature for today is:' + minTemp + '°');
 
-  const maxTemp = 'Max temperature for today is:' + Math.round(object.main.temp_max - 273) + '°';
-  console.log(maxTemp);
+  const maxTemp = Math.round(object.main.temp_max - 273);
+  console.log('Max temperature for today is:' + maxTemp + '°');
 
-  const wind = 'Wind speed is:' + object.wind.speed  + 'm/s';
-  console.log(wind);
+  const wind = object.wind.speed;
+  console.log('Wind speed is:' + wind  + 'm/s');
 
   process.exit(-1);
 })();
