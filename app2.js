@@ -60,14 +60,20 @@ const input = async () => {
     const feelslike = Math.round(object.main.feels_like - 273);
     console.log(concolor`${'Feels like:'}(b,blue) ${feelslike + '°C'}(b,yellow)`);
 
-    const minTemp = Math.round(object.main.temp_min - 273);
+    const getTemp = gradation => {
+      const key = `temp_${gradation}`;
+      const value = object.main[key];
+      return Math.round(value - 273);
+    };
+    const minTemp = getTemp('min');
     console.log(concolor`${'Min temperature for today is:'}(b,blue) ${minTemp + '°C'}(b,yellow)`);
 
-    const maxTemp = Math.round(object.main.temp_max - 273);
+    const maxTemp = getTemp('max');
     console.log(concolor`${'Max temperature for today is:'}(b,blue) ${maxTemp + '°C'}(b,yellow)`);
 
     const wind = object.wind.speed;
     console.log(concolor`${'Wind speed is:'}(b,green) ${wind + 'm/s'}(b,yellow)`);
+
     process.exit(-1);
   } else {
     console.log(concolor`${'Ooops,this city doesn`t exist,try again'}(b,red)`);
