@@ -4,7 +4,7 @@ console.clear();
 
 const concolor = require('concolor');
 const axios = require('axios');
-
+console.log('Hi');
 console.log(concolor`${'Enter your city'}(b,red)`);
 
 const getData = async cityName => { // functioin for getting data
