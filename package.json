@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/kirilinsane/CourseWork/issues"
   },
-  "homepage": "https://github.com/kirilinsane/CourseWork#readme"
+  "homepage": "https://github.com/kirilinsane/CourseWork#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "concolor": "^0.1.14"
+  }
 }
