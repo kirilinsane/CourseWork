@@ -1,7 +1,6 @@
 'use strict';
 
 console.clear();
-
 const concolor = require('concolor');
 const axios = require('axios');
 
@@ -14,12 +13,12 @@ const getData = async cityName => { // functioin for getting data
   let object = {};
 
   await axios.get(URL)
-     .then(res => {
-       object  = res.data;
-     })
-     .catch(err => {
-       object = { err };
-     });
+    .then(res => {
+      object  = res.data;
+    })
+    .catch(err => {
+      object = { err };
+    });
   return object;
 };
 // async  function for working with promises
@@ -40,7 +39,8 @@ const input = async () => {
       if (visibility === undefined) {
         console.log(concolor`${'Unknown visibility'}(b,red/black)`);
       }    else {
-        console.log(concolor`${'Visibility is'}(b,green) ${visibility + 'm'}(b,yellow)`);
+        const vis = 'Visibility is';
+        console.log(concolor`${vis}(b,green) ${visibility + 'm'}(b,yellow)`);
       }
     };
     vis();
@@ -48,32 +48,38 @@ const input = async () => {
     const sky = () => {
       const sky =  object.weather.main;
       if (sky === undefined) {
-        console.log(concolor`${'Can`t get information about the sky'}(b,red/black)`);
+        console.log(concolor`${'No information about the sky'}(b,red/black)`);
       }  else {
         console.log('sky:' + sky);
       }
     };
     sky();
 
+    const cur = 'Current temperature is:';
     const temp = Math.round(object.main.temp - 273);
-    console.log(concolor`${'Current temperature is:'}(b,blue) ${temp + '°C'}(b,yellow)`);
+    console.log(concolor`${cur}(b,blue) ${temp + '°C'}(b,yellow)`);
 
+    const feels = 'Feels like:';
     const feelslike = Math.round(object.main.feels_like - 273);
-    console.log(concolor`${'Feels like:'}(b,blue) ${feelslike + '°C'}(b,yellow)`);
+    console.log(concolor`${feels}(b,blue) ${feelslike + '°C'}(b,yellow)`);
 
     const getTemp = gradation => {
       const key = `temp_${gradation}`;
       const value = object.main[key];
       return Math.round(value - 273);
     };
+
+    const min = 'Min temperature for today is:';
     const minTemp = getTemp('min');
-    console.log(concolor`${'Min temperature for today is:'}(b,blue) ${minTemp + '°C'}(b,yellow)`);
+    console.log(concolor`${min}(b,blue) ${minTemp + '°C'}(b,yellow)`);
 
+    const max = 'Max temperature for today is:';
     const maxTemp = getTemp('max');
-    console.log(concolor`${'Max temperature for today is:'}(b,blue) ${maxTemp + '°C'}(b,yellow)`);
+    console.log(concolor`${max}(b,blue) ${maxTemp + '°C'}(b,yellow)`);
 
+    const winds = 'Wind speed is:';
     const wind = object.wind.speed;
-    console.log(concolor`${'Wind speed is:'}(b,green) ${wind + 'm/s'}(b,yellow)`);
+    console.log(concolor`${winds}(b,green) ${wind + 'm/s'}(b,yellow)`);
 
     process.exit(-1);
   } else {
