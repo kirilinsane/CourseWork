@@ -15,3 +15,6 @@ big functional
 
 # Navigation
 To find neccesary information about the weather you need to input the name of the city in English.
+
+# Launch
+To launch the program write "npm start"
