@@ -81,7 +81,7 @@ const input = async () => {
     const wind = object.wind.speed;
     console.log(concolor`${winds}(b,green) ${wind + 'm/s'}(b,yellow)`);
 
-    process.exit(-1);
+    process.exit(0);
   } else {
     console.log(concolor`${'Ooops,this city doesn`t exist,try again'}(b,red)`);
     input();
