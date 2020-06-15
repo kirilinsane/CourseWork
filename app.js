@@ -23,8 +23,8 @@ const getData = async cityName => {
 
 const input = async () => {
   const stdin = process.openStdin();
-  const cityName = await new Promise(resolve => {
-    stdin.addListener('data', data => {
+  const cityName = await new Promise(resolve => { //calback
+    stdin.addListener('data', data => { //вытаскиваем дату
       resolve(data.toString().trim());
     });
   });
@@ -44,7 +44,6 @@ const input = async () => {
     } else {
       console.log('sky:' + skyStatus);
     }
-
     const getTemp = (gradation = '') => {
       const value = object.main[gradation];
       return Math.round(value - 273);
