@@ -8,7 +8,6 @@ const greeting = () => {
   console.log('Hi');
   console.log(concolor`${'Enter your city'}(b,red)`);
 };
-greeting();
 
 const getData = async cityName => {
   const API_KEY = '3bd68c313a18c02837369e027d9ac4bd';
@@ -28,6 +27,12 @@ const printInformation = object => {
   const visione = 'Visibility is';
   const currentVision = object.visibility;
   const skyStatus = object.weather.main;
+
+  const getTemp = (gradation = '') => {
+    const value = object.main[gradation];
+    return Math.round(value - 273);
+  };
+
   if (!currentVision) {
     console.log(concolor`${'Unknown visibility'}(b,red/black)`);
   } else {
@@ -38,11 +43,6 @@ const printInformation = object => {
   } else {
     console.log('sky:' + skyStatus);
   }
-
-  const getTemp = (gradation = '') => {
-    const value = object.main[gradation];
-    return Math.round(value - 273);
-  };
 
   const phrase1 = 'Current temperature is:';
   const currTemperature = getTemp('temp');
@@ -83,4 +83,5 @@ const input = async () => {
   }
 };
 
+greeting();
 input();
