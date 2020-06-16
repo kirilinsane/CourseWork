@@ -25,13 +25,13 @@ const getData = async cityName => {
 };
 
 const printInformation = object => {
-  const vis = 'Visibility is';
+  const visione = 'Visibility is';
   const currentVision = object.visibility;
   const skyStatus = object.weather.main;
   if (!currentVision) {
     console.log(concolor`${'Unknown visibility'}(b,red/black)`);
   } else {
-    console.log(concolor`${vis}(b,green) ${currentVision + 'm'}(b,yellow)`);
+    console.log(concolor`${visione}(b,green) ${currentVision + 'm'}(b,yellow)`);
   }
   if (!skyStatus) {
     console.log(concolor`${'No information about the sky'}(b,red/black)`);
