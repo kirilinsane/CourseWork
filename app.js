@@ -28,7 +28,7 @@ const printInformation = object => {
   const currentVision = object.visibility;
   const skyStatus = object.weather.main;
 
-  const getTemp = (gradation = '') => {
+  const getTemp = gradation => {
     const value = object.main[gradation];
     return Math.round(value - 273);
   };
